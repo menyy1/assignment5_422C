@@ -613,7 +613,15 @@ public abstract class Critter {
 					x.doTimeStep();		//we can make them fight here
 					x.cnt++;	//increasing count to 1
 				}
-				
+				for (int i=0; i<population.size(); i++)
+				{
+					Critter x = population.get(i);
+					x.moved=false; 
+					if (x.energy<1){
+						population.remove(i);
+					}
+			
+				}
 				//do the fights
 				for (int i=0; i<population.size()-1; i++)
 				{
