@@ -1,4 +1,7 @@
 package assignment5;
+
+import java.lang.reflect.InvocationTargetException;
+
 /* CRITTERS Critter1.java
  * EE422C Project 4 submission by
  * Manuel Lopez
@@ -24,14 +27,15 @@ public class Critter1 extends Critter{
 	
 	public String toString() { return "1"; }
 	
-	public boolean fight(String used )
+	public boolean fight(String used ) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException 
 	{
 		if (used.equals("1") || used.equals("@"))
 			return true;
 		else 
 		{
-			
-			walk(dir);
+			String compare =look(dir,false);
+			if (!compare.equals("1")&& !compare.equals("@"))
+				walk(dir);
 			return  false;
 		}
 	}
@@ -65,8 +69,8 @@ public class Critter1 extends Critter{
 	}
 
 	@Override
-	public CritterShape viewShape() {
-		
-		return null;
-	}
+	public CritterShape viewShape() { return CritterShape.TRIANGLE; }
+	
+	@Override
+	public javafx.scene.paint.Color viewOutlineColor() {return javafx.scene.paint.Color.RED;}
 }
