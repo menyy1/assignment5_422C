@@ -11,11 +11,11 @@ import assignment5.Params;
 public abstract class Critter {
 	/* NEW FOR PROJECT 5 */
 	public enum CritterShape {
-		CIRCLE,
-		SQUARE,
-		TRIANGLE,
-		DIAMOND,
-		STAR
+		CIRCLE,//0
+		SQUARE,//1
+		TRIANGLE,//2
+		DIAMOND,//3
+		STAR//4
 	}
 	
 	/* the default color is white, which I hope makes critters invisible by default
@@ -49,7 +49,7 @@ public abstract class Critter {
 		myPackage = Critter.class.getPackage().toString().split(" ")[1];
 	}
 	
-	protected String look(int direction, boolean steps) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	protected String look(int direction, boolean steps) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		if(steps){
 			for(int i = 0; i <2; i++){
 				switch (direction)
@@ -71,7 +71,7 @@ public abstract class Critter {
 								processing(buche);
 							}
 						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+						return ((String)method.invoke(null, "")); //return toString of Critter
 					}
 				case 1 :
 					if(i == 0 || checkPosition((x_coord+1)%Params.world_width, (y_coord+1)%Params.world_height)){
@@ -90,7 +90,7 @@ public abstract class Critter {
 								processing(buche);
 							}
 						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+						return ((String)method.invoke(null, ""));//return toString of Critter
 					}
 				case 2 :
 					if(i == 0 || checkPosition(x_coord, (y_coord+1)%Params.world_height)){
@@ -109,7 +109,7 @@ public abstract class Critter {
 								processing(buche);
 							}
 						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+						return ((String)method.invoke(null, "")); //return toString of Critter
 					}
 				case 3:
 					if(i == 0 || checkPosition((Params.world_width+x_coord-1)%Params.world_width, (y_coord+1)%Params.world_height)){
@@ -128,7 +128,7 @@ public abstract class Critter {
 								processing(buche);
 							}
 						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+						return ((String)method.invoke(null, "")); //return toString of Critter
 					}
 				case 4:
 					if(i == 0 || checkPosition((Params.world_width+x_coord-1)%Params.world_width, y_coord)){
@@ -147,7 +147,7 @@ public abstract class Critter {
 								processing(buche);
 							}
 						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+						return ((String)method.invoke(null, "")); //return toString of Critter
 					}
 				case 5:
 					if(i == 0 || checkPosition((Params.world_width+x_coord-1)%Params.world_width, (Params.world_height+y_coord-1)%Params.world_height)){
@@ -166,7 +166,7 @@ public abstract class Critter {
 								processing(buche);
 							}
 						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+						return ((String)method.invoke(null, "")); //return toString of Critter
 					}
 				case 6:
 					if(i == 0 || checkPosition(x_coord, (Params.world_height+y_coord-1)%Params.world_height)){
@@ -185,7 +185,7 @@ public abstract class Critter {
 								processing(buche);
 							}
 						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+						return ((String)method.invoke(null, "")); //return toString of Critter
 					}
 				case 7:
 					if(i == 0 || checkPosition((x_coord+1)%Params.world_width, (Params.world_height+y_coord-1)%Params.world_height)){
@@ -204,7 +204,7 @@ public abstract class Critter {
 								processing(buche);
 							}
 						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+						return ((String)method.invoke(null, ""));//return toString of Critter
 					}
 				}
 			}
@@ -229,7 +229,7 @@ public abstract class Critter {
 							processing(buche);
 						}
 					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+					return ((String)method.invoke(null, "")); //return toString of Critter
 				}
 			case 1 :
 				if(checkPosition((x_coord+1)%Params.world_width, (y_coord+1)%Params.world_height)){
@@ -248,7 +248,7 @@ public abstract class Critter {
 							processing(buche);
 						}
 					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+					return ((String)method.invoke(null, "")); //return toString of Critter
 				}
 			case 2 :
 				if(checkPosition(x_coord, (y_coord+1)%Params.world_height)){
@@ -267,7 +267,7 @@ public abstract class Critter {
 							processing(buche);
 						}
 					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+					return ((String)method.invoke(null, "")); //return toString of Critter
 				}
 			case 3:
 				if(checkPosition((Params.world_width+x_coord-1)%Params.world_width, (y_coord+1)%Params.world_height)){
@@ -286,7 +286,7 @@ public abstract class Critter {
 							processing(buche);
 						}
 					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+					return ((String)method.invoke(null, "")); //return toString of Critter
 				}
 			case 4:
 				if(checkPosition((Params.world_width+x_coord-1)%Params.world_width, y_coord)){
@@ -305,7 +305,7 @@ public abstract class Critter {
 							processing(buche);
 						}
 					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+					return ((String)method.invoke(null, "")); //return toString of Critter
 				}
 			case 5:
 				if(checkPosition((Params.world_width+x_coord-1)%Params.world_width, (Params.world_height+y_coord-1)%Params.world_height)){
@@ -324,7 +324,7 @@ public abstract class Critter {
 							processing(buche);
 						}
 					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+					return ((String)method.invoke(null, "")); //return toString of Critter
 				}
 			case 6:
 				if(checkPosition(x_coord, (Params.world_height+y_coord-1)%Params.world_height)){
@@ -343,7 +343,7 @@ public abstract class Critter {
 							processing(buche);
 						}
 					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+					return ((String)method.invoke(null, "")); //return toString of Critter
 				}
 			case 7:
 				if(checkPosition((x_coord+1)%Params.world_width, (Params.world_height+y_coord-1)%Params.world_height)){
@@ -362,7 +362,7 @@ public abstract class Critter {
 							processing(buche);
 						}
 					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, (Object)null)); //return toString of Critter
+					return ((String)method.invoke(null, "")); //return toString of Critter
 				}
 			}
 		}
@@ -600,11 +600,11 @@ public abstract class Critter {
 				return x;
 	}
 
-	public abstract void doTimeStep();
-	public abstract boolean fight(String oponent);
+	public abstract void doTimeStep() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+	public abstract boolean fight(String oponent) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException;
 	
 	
-	public static void worldTimeStep() {
+	public static void worldTimeStep() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		//adding babies first since the first time it will be empty
 				//therefore new babies will be added at the second time
 				for (int i=0; i< population.size(); i++)
@@ -864,6 +864,16 @@ public abstract class Critter {
 		protected static List<Critter> getBabies() {
 			return babies;
 		}
+		
+		public static int[] getposition(Critter x)
+		{
+			int[] y= new int[2];
+			
+			y[0]=x.x_coord;
+			y[1]=x.y_coord;
+			return y;
+			
+		}
 	}
 	
 	/**
@@ -915,4 +925,5 @@ public abstract class Critter {
 		}
 		return true;
 	}
+	
 }
