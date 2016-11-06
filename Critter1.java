@@ -34,6 +34,8 @@ public class Critter1 extends Critter{
 		else 
 		{
 			String compare =look(dir,false);
+			if (compare==null)
+				return false;
 			if (!compare.equals("1")&& !compare.equals("@"))
 				walk(dir);
 			return  false;

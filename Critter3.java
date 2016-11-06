@@ -62,8 +62,8 @@ public class Critter3 extends Critter{
 	}
 
 	@Override
-	public CritterShape viewShape() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public CritterShape viewShape() { return CritterShape.STAR; }
+	
+	@Override
+	public javafx.scene.paint.Color viewOutlineColor() {return javafx.scene.paint.Color.GOLD;}
 }

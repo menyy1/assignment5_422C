@@ -45,13 +45,13 @@ public class Critter2 extends Critter{
 		String temp = look(dir,false);
 		if (x==0)
 		{
-			if (temp==null)
+			if (temp==null|| temp.equals(""))
 				walk(dir);
 		}
 		else if (x==1)
 		{
 			
-			if (temp==null)
+			if (temp==null|| temp.equals(""))
 				run(dir);
 		}
 		else
