@@ -11,6 +11,8 @@ package assignment5;
  * Fall 2016
  */
 
+import assignment5.Critter.CritterShape;
+
 /**A.K.A Jeff This critter will only reproduce in the dotimestep method
  * besides that it only fight algae. Any other it runs away
  * 
@@ -34,6 +36,7 @@ public class Critter4 extends Critter{
 		}
 		else 
 		{
+			
 			walk(dir);
 			return false;
 		}
@@ -59,8 +62,13 @@ public class Critter4 extends Critter{
 
 
 	@Override
-	public CritterShape viewShape() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public CritterShape viewShape() { return CritterShape.SQUARE; }
+	
+	@Override
+	public javafx.scene.paint.Color viewOutlineColor() {return javafx.scene.paint.Color.CYAN;}
+	
+	/*@Override
+	public javafx.scene.paint.Color viewColor() { 
+		return javafx.scene.paint.Color.WHITE; 
+	}*/
 }

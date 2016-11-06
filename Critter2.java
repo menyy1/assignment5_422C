@@ -13,8 +13,6 @@ package assignment5;
 
 import java.lang.reflect.InvocationTargetException;
 
-import assignment5.Critter.CritterShape;
-
 /**
  * A.K.A Uknown critter it randomly makes its decision.
  * It is the wild card critter
@@ -44,15 +42,16 @@ public class Critter2 extends Critter{
 	
 	public void doTimeStep() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		int x = Critter.getRandomInt(100)%3;
-		
+		String temp = look(dir,false);
 		if (x==0)
 		{
-			if (look(dir,false).isEmpty())
+			if (temp==null)
 				walk(dir);
 		}
 		else if (x==1)
 		{
-			if (look(dir,false).isEmpty())
+			
+			if (temp==null)
 				run(dir);
 		}
 		else
@@ -72,7 +71,7 @@ public class Critter2 extends Critter{
 	}
 
 	@Override
-	public CritterShape viewShape() { return CritterShape.CIRCLE; }
+	public CritterShape viewShape() { return CritterShape.DIAMOND; }
 	
 	@Override
 	public javafx.scene.paint.Color viewOutlineColor() {return javafx.scene.paint.Color.BLACK;}
