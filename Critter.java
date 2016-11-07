@@ -1,21 +1,23 @@
 package assignment5;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
 import assignment5.Algae;
 import assignment5.Critter;
+import assignment5.*;
 import assignment5.Params;
 
 public abstract class Critter {
 	/* NEW FOR PROJECT 5 */
 	public enum CritterShape {
-		CIRCLE,//0
-		SQUARE,//1
-		TRIANGLE,//2
-		DIAMOND,//3
-		STAR//4
+		CIRCLE,
+		SQUARE,
+		TRIANGLE,
+		DIAMOND,
+		STAR
 	}
 	
 	/* the default color is white, which I hope makes critters invisible by default
@@ -49,7 +51,7 @@ public abstract class Critter {
 		myPackage = Critter.class.getPackage().toString().split(" ")[1];
 	}
 	
-	protected String look(int direction, boolean steps) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+	protected String look(int direction, boolean steps) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		if(steps){
 			for(int i = 0; i <2; i++){
 				switch (direction)
@@ -59,152 +61,56 @@ public abstract class Critter {
 						break;
 					}
 					else{
-						int index = myPackage.length()+7;	
-						String buche;
-						buche = occupied.getClass().toString().substring(index);
-						buche = "look " + buche;
-						Method method = null;
-							try{
-								Class<?> c = occupied.getClass();
-								method =  c.getDeclaredMethod("toString", String.class);
-							}catch(NoSuchMethodException e){
-								processing(buche);
-							}
-						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, "")); //return toString of Critter
+						return occupied.toString();
 					}
 				case 1 :
 					if(i == 0 || checkPosition((x_coord+1)%Params.world_width, (y_coord+1)%Params.world_height)){
 						break;
 					}
 					else{
-						int index = myPackage.length()+7;	
-						String buche;
-						buche = occupied.getClass().toString().substring(index);
-						buche = "look " + buche;
-						Method method = null;
-							try{
-								Class<?> c = occupied.getClass();
-								method =  c.getDeclaredMethod("toString", String.class);
-							}catch(NoSuchMethodException e){
-								processing(buche);
-							}
-						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, ""));//return toString of Critter
+						return occupied.toString();
 					}
 				case 2 :
 					if(i == 0 || checkPosition(x_coord, (y_coord+1)%Params.world_height)){
 						break;
 					}
 					else{
-						int index = myPackage.length()+7;	
-						String buche;
-						buche = occupied.getClass().toString().substring(index);
-						buche = "look " + buche;
-						Method method = null;
-							try{
-								Class<?> c = occupied.getClass();
-								method =  c.getDeclaredMethod("toString", String.class);
-							}catch(NoSuchMethodException e){
-								processing(buche);
-							}
-						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, "")); //return toString of Critter
+						return occupied.toString();
 					}
 				case 3:
 					if(i == 0 || checkPosition((Params.world_width+x_coord-1)%Params.world_width, (y_coord+1)%Params.world_height)){
 						break;
 					}
 					else{
-						int index = myPackage.length()+7;	
-						String buche;
-						buche = occupied.getClass().toString().substring(index);
-						buche = "look " + buche;
-						Method method = null;
-							try{
-								Class<?> c = occupied.getClass();
-								method =  c.getDeclaredMethod("toString", String.class);
-							}catch(NoSuchMethodException e){
-								processing(buche);
-							}
-						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, "")); //return toString of Critter
+						return occupied.toString();
 					}
 				case 4:
 					if(i == 0 || checkPosition((Params.world_width+x_coord-1)%Params.world_width, y_coord)){
 						break;
 					}
 					else{
-						int index = myPackage.length()+7;	
-						String buche;
-						buche = occupied.getClass().toString().substring(index);
-						buche = "look " + buche;
-						Method method = null;
-							try{
-								Class<?> c = occupied.getClass();
-								method =  c.getDeclaredMethod("toString", String.class);
-							}catch(NoSuchMethodException e){
-								processing(buche);
-							}
-						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, "")); //return toString of Critter
+						return occupied.toString();
 					}
 				case 5:
 					if(i == 0 || checkPosition((Params.world_width+x_coord-1)%Params.world_width, (Params.world_height+y_coord-1)%Params.world_height)){
 						break;
 					}
 					else{
-						int index = myPackage.length()+7;	
-						String buche;
-						buche = occupied.getClass().toString().substring(index);
-						buche = "look " + buche;
-						Method method = null;
-							try{
-								Class<?> c = occupied.getClass();
-								method =  c.getDeclaredMethod("toString", String.class);
-							}catch(NoSuchMethodException e){
-								processing(buche);
-							}
-						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, "")); //return toString of Critter
+						return occupied.toString();
 					}
 				case 6:
 					if(i == 0 || checkPosition(x_coord, (Params.world_height+y_coord-1)%Params.world_height)){
 						break;
 					}
 					else{
-						int index = myPackage.length()+7;	
-						String buche;
-						buche = occupied.getClass().toString().substring(index);
-						buche = "look " + buche;
-						Method method = null;
-							try{
-								Class<?> c = occupied.getClass();
-								method =  c.getDeclaredMethod("toString", String.class);
-							}catch(NoSuchMethodException e){
-								processing(buche);
-							}
-						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, "")); //return toString of Critter
+						return occupied.toString();
 					}
 				case 7:
 					if(i == 0 || checkPosition((x_coord+1)%Params.world_width, (Params.world_height+y_coord-1)%Params.world_height)){
 						break;
 					}
 					else{
-						int index = myPackage.length()+7;	
-						String buche;
-						buche = occupied.getClass().toString().substring(index);
-						buche = "look " + buche;
-						Method method = null;
-							try{
-								Class<?> c = occupied.getClass();
-								method =  c.getDeclaredMethod("toString", String.class);
-							}catch(NoSuchMethodException e){
-								processing(buche);
-							}
-						this.energy -= Params.look_energy_cost;
-						return ((String)method.invoke(null, ""));//return toString of Critter
+						return occupied.toString();
 					}
 				}
 			}
@@ -217,152 +123,57 @@ public abstract class Critter {
 					break;
 				}
 				else{
-					int index = myPackage.length()+7;	
-					String buche;
-					buche = occupied.getClass().toString().substring(index);
-					buche = "look " + buche;
-					Method method = null;
-						try{
-							Class<?> c = occupied.getClass();
-							method =  c.getDeclaredMethod("toString", String.class);
-						}catch(NoSuchMethodException e){
-							processing(buche);
-						}
-					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, "")); //return toString of Critter
+					return occupied.toString();
 				}
 			case 1 :
 				if(checkPosition((x_coord+1)%Params.world_width, (y_coord+1)%Params.world_height)){
 					break;
 				}
 				else{
-					int index = myPackage.length()+7;	
-					String buche;
-					buche = occupied.getClass().toString().substring(index);
-					buche = "look " + buche;
-					Method method = null;
-						try{
-							Class<?> c = occupied.getClass();
-							method =  c.getDeclaredMethod("toString", String.class);
-						}catch(NoSuchMethodException e){
-							processing(buche);
-						}
-					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, "")); //return toString of Critter
+					return occupied.toString();
 				}
 			case 2 :
 				if(checkPosition(x_coord, (y_coord+1)%Params.world_height)){
 					break;
 				}
 				else{
-					int index = myPackage.length()+7;	
-					String buche;
-					buche = occupied.getClass().toString().substring(index);
-					buche = "look " + buche;
-					Method method = null;
-						try{
-							Class<?> c = occupied.getClass();
-							method =  c.getDeclaredMethod("toString", String.class);
-						}catch(NoSuchMethodException e){
-							processing(buche);
-						}
-					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, "")); //return toString of Critter
+					return occupied.toString();
 				}
 			case 3:
 				if(checkPosition((Params.world_width+x_coord-1)%Params.world_width, (y_coord+1)%Params.world_height)){
 					break;
 				}
 				else{
-					int index = myPackage.length()+7;	
-					String buche;
-					buche = occupied.getClass().toString().substring(index);
-					buche = "look " + buche;
-					Method method = null;
-						try{
-							Class<?> c = occupied.getClass();
-							method =  c.getDeclaredMethod("toString", String.class);
-						}catch(NoSuchMethodException e){
-							processing(buche);
-						}
-					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, "")); //return toString of Critter
+					return occupied.toString();
 				}
 			case 4:
 				if(checkPosition((Params.world_width+x_coord-1)%Params.world_width, y_coord)){
 					break;
 				}
 				else{
-					int index = myPackage.length()+7;	
-					String buche;
-					buche = occupied.getClass().toString().substring(index);
-					buche = "look " + buche;
-					Method method = null;
-						try{
-							Class<?> c = occupied.getClass();
-							method =  c.getDeclaredMethod("toString", String.class);
-						}catch(NoSuchMethodException e){
-							processing(buche);
-						}
-					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, "")); //return toString of Critter
+					return occupied.toString();
 				}
 			case 5:
 				if(checkPosition((Params.world_width+x_coord-1)%Params.world_width, (Params.world_height+y_coord-1)%Params.world_height)){
 					break;
 				}
 				else{
-					int index = myPackage.length()+7;	
-					String buche;
-					buche = occupied.getClass().toString().substring(index);
-					buche = "look " + buche;
-					Method method = null;
-						try{
-							Class<?> c = occupied.getClass();
-							method =  c.getDeclaredMethod("toString", String.class);
-						}catch(NoSuchMethodException e){
-							processing(buche);
-						}
-					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, "")); //return toString of Critter
+					return occupied.toString();
 				}
 			case 6:
 				if(checkPosition(x_coord, (Params.world_height+y_coord-1)%Params.world_height)){
 					break;
 				}
 				else{
-					int index = myPackage.length()+7;	
-					String buche;
-					buche = occupied.getClass().toString().substring(index);
-					buche = "look " + buche;
-					Method method = null;
-						try{
-							Class<?> c = occupied.getClass();
-							method =  c.getDeclaredMethod("toString", String.class);
-						}catch(NoSuchMethodException e){
-							processing(buche);
-						}
-					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, "")); //return toString of Critter
-				}
+					return occupied.toString();
+					}
 			case 7:
 				if(checkPosition((x_coord+1)%Params.world_width, (Params.world_height+y_coord-1)%Params.world_height)){
 					break;
 				}
 				else{
-					int index = myPackage.length()+7;	
-					String buche;
-					buche = occupied.getClass().toString().substring(index);
-					buche = "look " + buche;
-					Method method = null;
-						try{
-							Class<?> c = occupied.getClass();
-							method =  c.getDeclaredMethod("toString", String.class);
-						}catch(NoSuchMethodException e){
-							processing(buche);
-						}
-					this.energy -= Params.look_energy_cost;
-					return ((String)method.invoke(null, "")); //return toString of Critter
+					
+					return occupied.toString(); //return toString of Critter
 				}
 			}
 		}
@@ -382,7 +193,7 @@ public abstract class Critter {
 	public static void setSeed(long new_seed) {
 		rand = new java.util.Random(new_seed);
 	}
-	
+
 	
 	/* a one-character long string that visually depicts your critter in the ASCII interface */
 	public String toString() { return ""; }
@@ -600,11 +411,11 @@ public abstract class Critter {
 				return x;
 	}
 
-	public abstract void doTimeStep() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException;
-	public abstract boolean fight(String oponent) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+	public abstract void doTimeStep();
+	public abstract boolean fight(String oponent);
 	
 	
-	public static void worldTimeStep() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public static void worldTimeStep() {
 		//adding babies first since the first time it will be empty
 				//therefore new babies will be added at the second time
 				for (int i=0; i< population.size(); i++)
@@ -768,8 +579,8 @@ public abstract class Critter {
 		}
 		//System.out.println(c);
 		Critter z = (Critter) c.newInstance();
-		z.x_coord= getRandomInt(Params.world_width-1);
-		z.y_coord =  getRandomInt(Params.world_height-1);
+		z.x_coord= getRandomInt(Params.world_width);
+		z.y_coord =  getRandomInt(Params.world_height);
 		z.energy = Params.start_energy;
 		population.add(z);
 	}
@@ -810,7 +621,7 @@ public abstract class Critter {
 				critters.remove(0);
 				method.invoke(null, critters);
 			}catch(NoSuchMethodException e){
-				processing(buche);
+				//processing(buche);
 			}
 	}
 	
@@ -844,16 +655,19 @@ public abstract class Critter {
 		protected int getY_coord() {
 			return super.y_coord;
 		}
-		
+		public static int[] getposition(Critter x){
+			int[] y = new int[2];
+			y[0] = x.x_coord;
+			y[1] = x.y_coord;
+			return y;
+		}
 
 		/*
 		 * This method getPopulation has to be modified by you if you are not using the population
 		 * ArrayList that has been provided in the starter code.  In any case, it has to be
 		 * implemented for grading tests to work.
 		 */
-		protected static List<Critter> getPopulation() {
-			return population;
-		}
+		
 		
 		/*
 		 * This method getBabies has to be modified by you if you are not using the babies
@@ -863,16 +677,6 @@ public abstract class Critter {
 		 */
 		protected static List<Critter> getBabies() {
 			return babies;
-		}
-		
-		public static int[] getposition(Critter x)
-		{
-			int[] y= new int[2];
-			
-			y[0]=x.x_coord;
-			y[1]=x.y_coord;
-			return y;
-			
 		}
 	}
 	
@@ -925,5 +729,24 @@ public abstract class Critter {
 		}
 		return true;
 	}
+	public static List<Critter> getPopulation() {
+		return population;
+	}
+	public static void everyStat(String x) throws IllegalAccessException, InstantiationException, InvalidCritterException{
+		
+			try{
+				java.util.List<Critter> giveme = getInstances(x);
+				runStats(giveme);
+			}catch(InstantiationException e){
+				
+			}catch(IllegalAccessException e1){
+				
+			}catch(IllegalArgumentException e2){
+				
+			}catch(InvocationTargetException e3){
+				
+			}
+			
+		}
 	
 }
