@@ -73,10 +73,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane rootPane = new BorderPane();
-
-            grid.setPrefSize(50, 50);
-            grid.setMaxHeight(50);
-            grid.setMaxWidth(50);
             
            
             slider.setMin(0);
@@ -364,6 +360,7 @@ public class Main extends Application {
 		   grid.setPrefSize(800, 500);
            grid.setMaxHeight(500);
            grid.setMaxWidth(1335);
+           CritterGrid.intializegrid(grid);
            
            dummy.getChildren().addAll(root2);
            dummy.setAlignment(Pos.TOP_LEFT);
@@ -381,8 +378,8 @@ public class Main extends Application {
 			primaryStage.setTitle("Grid World");
 			primaryStage.sizeToScene();
 			primaryStage.setMinHeight(500);
-			primaryStage.setMinWidth(700);
-		    primaryStage.setMaxHeight(600);
+			primaryStage.setMinWidth(800);
+		    primaryStage.setMaxHeight(900);
 		    primaryStage.setMaxWidth(1335);
 		    
 		} catch(Exception e) { 
