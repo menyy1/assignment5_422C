@@ -1,14 +1,8 @@
 package assignment5;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.Console;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.PipedOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -17,21 +11,12 @@ import java.util.List;
 import assignment5.Critter.TestCritter;
 import assignment5.Critter;
 import assignment5.InvalidCritterException;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -42,17 +27,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -70,7 +51,6 @@ public class Main extends Application {
 	final Label seedLabel = new Label("Seed:");
 	final Label statsLabel = new Label("Stats:");
 	final Label entryError = new Label("Please insert a number");
-	private boolean flag;
 	static Label ranimation = new Label("Running Animation...");
 	static Pane root = new Pane();
 	static List<String> meco = new ArrayList<String>();
@@ -81,6 +61,8 @@ public class Main extends Application {
     static VBox vb2 = new VBox();
     static StackPane dummy = new StackPane();
 	Console cnsl = null;
+	static Slider slider = new Slider();
+	static boolean flag = false;
 	
 	// Gets the package name.  This assumes that Critter and its subclasses are all in the same package.
 		static {
@@ -95,6 +77,16 @@ public class Main extends Application {
             grid.setPrefSize(50, 50);
             grid.setMaxHeight(50);
             grid.setMaxWidth(50);
+            
+           
+            slider.setMin(0);
+            slider.setMax(1000);
+            slider.setValue(0);
+            slider.setShowTickLabels(true);
+            slider.setShowTickMarks(true);
+            slider.setMajorTickUnit(500);
+            slider.setMinorTickCount(100);
+            slider.setBlockIncrement(100);
             
             //////////////////////////////
 			File folder = new File("src/" + myPackage);
@@ -152,22 +144,10 @@ public class Main extends Application {
 			Scene scene = new Scene(root); 
 			
 		    
-           Stage stage1 = new Stage();
            
           Scene scene1 = new Scene(root2);
-           /* for(int i = 0; i<grid.getMaxWidth(); i++){
-			    ColumnConstraints cc = new ColumnConstraints(6);
-			    cc.setHgrow(Priority.ALWAYS);
-			    grid.getColumnConstraints().add(cc);
-            }
-			for(int j = 0; j<grid.getMaxHeight(); j++){
-			    RowConstraints rc = new RowConstraints(6);
-			    rc.setVgrow(Priority.ALWAYS);
-			    grid.getRowConstraints().add(rc);
-			}*/
             
 			
-			Scene scene2 = new Scene(grid);//this scene is for animation
 		    
 			
 			
@@ -223,7 +203,7 @@ public class Main extends Application {
 		    hb4.setAlignment(Pos.CENTER);
 		    hb4.setPadding(new Insets(25, 0, 0, 10));
 		    
-		    vb.getChildren().addAll(title, new Separator(), hb, hb1, hb2, hb3, hb4);
+		    vb.getChildren().addAll(title, new Separator(), hb, hb1, hb2, hb3, hb4, slider);
 		    vb.setSpacing(20);
 		    vb.setAlignment(Pos.BASELINE_LEFT);
 		    vb.setPadding(new Insets(10, 0, 0, 5));
@@ -265,7 +245,6 @@ public class Main extends Application {
 		    			vb2.getChildren().clear();
 						Critter.runStats(Critter.getInstances(stats.getValue()));
 		    			Label lbl = new Label(testOutputString.toString());
-			    		//vb2.getChildren().removeAll(lbl);
 						vb2.getChildren().addAll(console, lbl);
 		    			vb2.setSpacing(10);
 		    			vb2.setAlignment(Pos.BASELINE_LEFT);
@@ -324,19 +303,50 @@ public class Main extends Application {
 		    runAnimation.setOnAction(new EventHandler<ActionEvent>(){
 		    	@Override
 		    	public void handle(ActionEvent e5){
+		    		//TODO add the parameters to gray out 
+		    		//the other fields except the stop button
+		    		makeBtn.setDisable(true);
+		    		stepsBtn.setDisable(true);
+		    		seedBtn.setDisable(true);
+		    		statsBtn.setDisable(true);
+		    		make.setDisable(true);
+		    		stats.setDisable(true);
+		    		numMakes.setDisable(true);
+		    		numSteps.setDisable(true);
+		    		numSeed.setDisable(true);
+		    		flag=true;
 		    		animateUsingTimeline(grid, loco);
 		    	}
 		    });
+		    
+		    slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+		    	if(flag){
+	            	beat.pause();
 
+		    		animateUsingTimeline(grid, loco);
+		        }
+		    });
+		  
+		    
 		    stop.setOnAction(new EventHandler<ActionEvent>(){
 		    	@Override
 		    	public void handle(ActionEvent e6){
 		    		try{
+		    			
+		    			makeBtn.setDisable(false);
+			    		stepsBtn.setDisable(false);
+			    		seedBtn.setDisable(false);
+			    		statsBtn.setDisable(false);
+			    		make.setDisable(false);
+			    		stats.setDisable(false);
+			    		numMakes.setDisable(false);
+			    		numSteps.setDisable(false);
+			    		numSeed.setDisable(false);
 		    			vb2.getChildren().clear();
 			    		vb2.getChildren().add(new Label("Animation paused..."));
-		    			//vb2.setSpacing(10);
 		    			vb2.setAlignment(Pos.BASELINE_LEFT);
 		    			vb2.setPadding(new Insets(30, 0 , 0, 5));
+		    			flag = false;
 		    			beat.pause();
 		    		}catch(Exception e){
 		    			
@@ -344,35 +354,10 @@ public class Main extends Application {
 		    	}
 		    });
 		    
-		  /* javafx.application.Platform.runLater(new Runnable() {
-
-		        @Override
-		        public void run() {
-		            stage1.setScene(scene1);
-		            stage1.show();
-		            stage1.setWidth(400);
-		            stage1.setHeight(200);
-		        }
-		    });
-		    */
+		    
+		    
 		   ((Pane) scene.getRoot()).getChildren().addAll(vb);
 		   ((ScrollPane) scene1.getRoot()).setContent(vb2);
-		   
-		   //Stage stage2 = new Stage();
-	       
-		   /*javafx.application.Platform.runLater(new Runnable(){
-		    
-		    @Override
-		    public void run(){
-		    stage2.setScene(scene2);
-		    stage2.show();
-		    stage2.setWidth(300);
-		    stage2.setHeight(300);
-		    stage2.setMaxHeight(300);
-		    stage2.setMaxWidth(300);
-		    stage2.setResizable(false);
-		    }
-		   });*/
 		   
 		   
 		   
@@ -382,37 +367,19 @@ public class Main extends Application {
            
            dummy.getChildren().addAll(root2);
            dummy.setAlignment(Pos.TOP_LEFT);
-		  //root2.getChildren().add(dummy);
 		   
 		   Scene sceneFinal = new Scene(rootPane);
-		 //  Stage stage3 = new Stage();
-		   /*
-		   javafx.application.Platform.runLater(new Runnable(){
-			    
-			    @Override
-			    public void run(){
-			    stage3.setScene(sceneFinal);
-			    stage3.show();
-			    stage3.setWidth(1335);
-			    stage3.setHeight(600);
-			    stage3.setResizable(false);
-			    }
-			   });*/
-		   
 		   rootPane.setLeft(root);
 		   rootPane.setBottom(dummy);
 		   rootPane.setCenter(grid);
 		   rootPane.setStyle("-fx-background-color: aliceblue");
 		   rootPane.getCenter().setStyle("-fx-background-color: aliceblue");
-		  // grid.setGridLinesVisible(true);
 		   
            
            primaryStage.setScene(sceneFinal);
 			primaryStage.show(); // Paints the icons. Painter.paint();
 			primaryStage.setTitle("Grid World");
 			primaryStage.sizeToScene();
-			//primaryStage.setWidth(1000);
-		    //primaryStage.setHeight(600);
 			primaryStage.setMinHeight(500);
 			primaryStage.setMinWidth(700);
 		    primaryStage.setMaxHeight(600);
@@ -427,7 +394,8 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	public void makegrid(){        
+	public void makegrid(){ 
+		
 		CritterGrid.gridmaker(grid);
 		}
 
@@ -457,17 +425,15 @@ public class Main extends Application {
 	}
 	
 public static void animateUsingTimeline(GridPane grid, String[] loco) {
-	
 					beat = new Timeline(
 							new KeyFrame(Duration.ZERO,         event -> Critter.worldTimeStep()),
 							new KeyFrame(Duration.ZERO,         event -> givemethestats(loco)),
 					        new KeyFrame(Duration.ZERO,         event -> CritterGrid.gridmaker(grid)),
-					        new KeyFrame(Duration.seconds(1.0), event -> Critter.worldTimeStep()),
-					        new KeyFrame(Duration.seconds(1.0), event -> CritterGrid.gridmaker(grid)),
-					        new KeyFrame(Duration.seconds(1.0), event -> givemethestats(loco))
+					        new KeyFrame(Duration.millis(1001.0-slider.getValue()), event -> Critter.worldTimeStep()),
+					        new KeyFrame(Duration.millis(1001.0-slider.getValue()), event -> CritterGrid.gridmaker(grid)),
+					        new KeyFrame(Duration.millis(1001.0-slider.getValue()), event -> givemethestats(loco))
 					    );
 		
-			
 	        beat.setAutoReverse(true);
 	        beat.setCycleCount(Timeline.INDEFINITE);
 	        beat.play();
